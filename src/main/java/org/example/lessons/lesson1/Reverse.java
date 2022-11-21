@@ -58,7 +58,7 @@ public class Reverse {
         {
             reverse.add(reverse2.get(i));
         }
-        return reverse2;
+        return reverse;
     }
 
     private static void print(List<int[]> printList) {
