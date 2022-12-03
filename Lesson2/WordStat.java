@@ -34,6 +34,7 @@ public class WordStat {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8))));
         String line;
+
         while ((line = reader.readLine()) != null) {
             String[] words = line.split(separatorsString);
 
@@ -42,14 +43,13 @@ public class WordStat {
                     continue; }
 
                 Word wordObj = countMap.get(word);
+
                 if (wordObj == null) {
                     wordObj = new Word();
                     wordObj.word = word;
                     wordObj.count = 0;
                     countMap.put(word, wordObj); }
-                wordObj.count++;
-            }
-        }
+                wordObj.count++; }}
         reader.close();
         return countMap;
     }
