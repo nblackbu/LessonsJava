@@ -16,7 +16,7 @@ public class WordStat {
         return content;
     }
 
-    private static List<String[]> countWord(String content) throws IOException {
+    private static Map<String, Word> countWord(String content) throws IOException {
 
         ArrayList<String> listOfSeparators = new ArrayList<String>();
 
@@ -36,6 +36,7 @@ public class WordStat {
         String line;
         while ((line = reader.readLine()) != null) {
             String[] words = line.split(separatorsString);
+
             for (String word : words) {
                 if ("".equals(word)) {
                     continue; }
@@ -50,12 +51,7 @@ public class WordStat {
             }
         }
         reader.close();
-
-        List<Word> sWords = new ArrayList<>(countMap.values());
-
-        for (Word word : sWords) {
-            System.out.println(word.count + "\t" + word.word); }
-        return null;
+        return countMap;
     }
 
     public static class Word implements Comparable<Word> {
@@ -72,9 +68,17 @@ public class WordStat {
         public int compareTo(Word b) { return b.count - count; }
     }
 
+        private static void print (Map<String, Word> countMap) {
+
+            List<Word> sWords = new ArrayList<>(countMap.values());
+
+            for (Word word : sWords) {
+                System.out.println(word.count + "\t" + word.word); }
+        }
+
         public static void run () {
             try {
-                WordStat.countWord(WordStat.input());
+                WordStat.print(WordStat.countWord(WordStat.input()));
             } catch (IOException e) {
                 throw new RuntimeException(e);}
         }
