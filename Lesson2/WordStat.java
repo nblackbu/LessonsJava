@@ -1,7 +1,5 @@
 package Lesson2;
 
-import com.sun.jdi.Value;
-
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -40,17 +38,14 @@ public class WordStat {
             String[] words = line.split(separatorsString);
             for (String word : words) {
                 if ("".equals(word)) {
-                    continue;
-                }
+                    continue; }
 
                 Word wordObj = countMap.get(word);
                 if (wordObj == null) {
                     wordObj = new Word();
                     wordObj.word = word;
                     wordObj.count = 0;
-                    countMap.put(word, wordObj);
-                }
-
+                    countMap.put(word, wordObj); }
                 wordObj.count++;
             }
         }
@@ -59,10 +54,10 @@ public class WordStat {
         List<Word> sWords = new ArrayList<>(countMap.values());
 
         for (Word word : sWords) {
-            System.out.println(word.count + "\t" + word.word);
-        }
+            System.out.println(word.count + "\t" + word.word); }
         return null;
     }
+
     public static class Word implements Comparable<Word> {
         String word;
         int count;
@@ -77,7 +72,6 @@ public class WordStat {
         public int compareTo(Word b) { return b.count - count; }
     }
 
-
         private static List<String[]> print (List<String[]> printList){
             return null;
         }
@@ -86,7 +80,6 @@ public class WordStat {
             try {
                 WordStat.print(WordStat.countWord(WordStat.input()));
             } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+                throw new RuntimeException(e); }
         }
     }
