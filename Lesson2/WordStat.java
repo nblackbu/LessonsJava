@@ -80,6 +80,6 @@ public class WordStat {
             try {
                 WordStat.print(WordStat.countWord(WordStat.input()));
             } catch (IOException e) {
-                throw new RuntimeException(e); }
+                throw new RuntimeException(e);}
         }
     }
