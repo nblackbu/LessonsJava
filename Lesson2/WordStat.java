@@ -5,6 +5,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class WordStat {
 
@@ -17,25 +19,14 @@ public class WordStat {
 
     private static Map<String, Word> countWord(String content) throws IOException {
 
-        ArrayList<String> listOfSeparators = new ArrayList<>();
-
-        listOfSeparators.add(" ");
-        listOfSeparators.add(",");
-        listOfSeparators.add(".");
-        listOfSeparators.add("!");
-        listOfSeparators.add("?");
-        listOfSeparators.add("\n");
-        listOfSeparators.add("\r");
-        listOfSeparators.add("\t");
-
-        String separatorsString = String.join("|\\", listOfSeparators);
+        Pattern pattern1 = Pattern.compile("([?!,. \n\r\t])");
         Map<String, Word> countMap = new LinkedHashMap<>();
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8))));
         String line;
 
         while ((line = reader.readLine()) != null) {
-            String[] words = line.split(separatorsString);
+            String[] words = line.split(String.valueOf(pattern1));
 
             for (String word : words) {
                 if ("".equals(word)) {
@@ -46,7 +37,6 @@ public class WordStat {
                 if (wordObj == null) {
                     wordObj = new Word();
                     wordObj.word = word;
-                    wordObj.count = 0;
                     countMap.put(word, wordObj); }
                 wordObj.count++; }}
         reader.close();
@@ -57,6 +47,9 @@ public class WordStat {
         String word;
         int count;
 
+        public int ni() {
+           return count = 0;
+        }
         @Override
         public int hashCode() { return word.hashCode(); }
 
