@@ -12,13 +12,12 @@ public class WordStat {
 
         String path = "/Users/админ/Desktop/test.txt";
         String stringWord = Files.readString(Paths.get(path));
-        String  content = stringWord.toLowerCase();
-        return content;
+        return stringWord.toLowerCase();
     }
 
     private static Map<String, Word> countWord(String content) throws IOException {
 
-        ArrayList<String> listOfSeparators = new ArrayList<String>();
+        ArrayList<String> listOfSeparators = new ArrayList<>();
 
         listOfSeparators.add(" ");
         listOfSeparators.add(",");
@@ -30,7 +29,7 @@ public class WordStat {
         listOfSeparators.add("\t");
 
         String separatorsString = String.join("|\\", listOfSeparators);
-        Map<String, Word> countMap = new LinkedHashMap<String,Word>();
+        Map<String, Word> countMap = new LinkedHashMap<>();
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8))));
         String line;
