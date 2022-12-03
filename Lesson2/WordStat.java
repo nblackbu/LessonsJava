@@ -72,13 +72,9 @@ public class WordStat {
         public int compareTo(Word b) { return b.count - count; }
     }
 
-        private static List<String[]> print (List<String[]> printList){
-            return null;
-        }
-
         public static void run () {
             try {
-                WordStat.print(WordStat.countWord(WordStat.input()));
+                WordStat.countWord(WordStat.input());
             } catch (IOException e) {
                 throw new RuntimeException(e);}
         }
